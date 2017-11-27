@@ -1,0 +1,63 @@
+package ${servicePackage};
+
+import ${mapperPath}.${mapperName};
+import ${entityPath}.${entityName};
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Create by Linj
+ * create time: 2017-11-22 10:36:55
+ */
+@Service
+@Transactional
+public class ${entityName}Service {
+
+
+    @Autowired
+    private ${mapperName} ${mapperNameFirstCharLower};
+
+    public List<${entityName}> get${entityName}List(Map<String, Object> params) {
+        return ${mapperNameFirstCharLower}.get${entityName}List(params);
+    }
+
+    public void add${entityName}(Map<String, Object> params) throws Exception {
+        ${entityName} ${entityNameFirstCharLower} = dealCreateBean(params);
+        ${mapperNameFirstCharLower}.add${entityName}(${entityNameFirstCharLower});
+    }
+
+    public void update${entityName}ById(Map<String, Object> params) throws Exception {
+        String id = params.get("id").toString();
+        ${entityName} ${entityNameFirstCharLower} = ${mapperNameFirstCharLower}.get${entityName}ById(id);
+        ${entityNameFirstCharLower} = dealUpdateBean(${entityNameFirstCharLower}, params);
+        ${mapperNameFirstCharLower}.update${entityName}ById(${entityNameFirstCharLower});
+    }
+
+    public void delete${entityName}ById(Map<String, Object> params) {
+        String id = params.get("id").toString();
+        try {
+            ${mapperNameFirstCharLower}.delete${entityName}ById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ${entityName} dealUpdateBean(${entityName} ${entityNameFirstCharLower}, Map<String, Object> params) {
+        ${entityNameFirstCharLower} = new ${entityName}();
+        return ${entityNameFirstCharLower};
+    }
+
+    public ${entityName} dealCreateBean(Map<String, Object> params) {
+        ${entityName} ${entityNameFirstCharLower} = new ${entityName}();
+        return ${entityNameFirstCharLower};
+    }
+
+    public ${entityName} get${entityName}ById(Map<String, Object> params) {
+        String id = params.get("id").toString();
+        return ${mapperNameFirstCharLower}.get${entityName}ById(id);
+    }
+}

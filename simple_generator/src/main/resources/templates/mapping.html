@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//testMybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${namespace}">
+    <resultMap id="${entityNameFirstCharLower}Map" type="${entityPath}.${entityName}">
+        <id column="id" property="id"/>
+		${resultMap}
+    </resultMap>
+
+	<sql id="Base_Column_List">
+		${baseColumnList}
+	</sql>
+
+	<select id="get${entityName}List" resultMap="${entityNameFirstCharLower}Map">
+		${getEntityListSql}
+    </select>
+
+	<select id="get${entityName}ById" resultMap="${entityNameFirstCharLower}Map">
+		${getEntityByIdSql}
+	</select>
+
+	<delete id="delete${entityName}ById" parameterType="java.lang.Integer">
+		${deleteEntityByIdSql}
+	</delete>
+
+    <update id="update${entityName}ById" parameterType="${entityPath}.${entityName}">
+		${updateEntityByIdSql}
+	</update>
+
+    <insert id="add${entityName}" parameterType="${entityPath}.${entityName}" useGeneratedKeys="true" keyProperty="id">
+		${addEntitySql}
+	</insert>
+
+</mapper>

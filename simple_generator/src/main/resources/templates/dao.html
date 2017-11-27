@@ -1,0 +1,24 @@
+package ${daoPackage};
+
+
+import ${entityPath}.${entityName};
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Create by Linj
+ * create time: 2017-11-20 19:40:55
+ */
+public interface ${entityName}Dao {
+    List<${entityName}> get${entityName}List(Map<String, Object> params);
+
+    void add${entityName}(${entityName} ${entityNameFirstCharLower});
+
+    void update${entityName}ById(${entityName} ${entityNameFirstCharLower});
+
+    void delete${entityName}ById(String id);
+
+    ${entityName} get${entityName}ById(String id);
+
+}
